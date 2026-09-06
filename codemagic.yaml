@@ -6,17 +6,13 @@ workflows:
     environment:
       groups:
         - gemini_creds
-      vars:
-        PACKAGE_NAME: "com.example.app"
-      android_signing:
-        - keystore_reference
       java: 17
     scripts:
       - name: Set Android SDK
         script: |
           echo "sdk.dir=$ANDROID_SDK_ROOT" > local.properties
-      - name: Build Android Release
+      - name: Build Android APK
         script: |
-          ./gradlew assembleRelease
+          ./gradlew assembleDebug
     artifacts:
       - app/build/outputs/apk/**/*.apk
